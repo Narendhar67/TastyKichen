@@ -8,6 +8,7 @@ class Login extends Component {
 
   getData = async e => {
     e.preventDefault()
+    const {history} = this.props
     const {username, password} = this.state
     const url = 'https://apis.ccbp.in/login'
     const userData = {
@@ -20,10 +21,11 @@ class Login extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    
 
     if (response.ok === true) {
       Cookies.set('jwtToken', data.jwt_token, {expires: 1})
+      this.setState({LoginError: false})
+      history.push('/')
     } else {
       this.setState({LoginError: true})
     }
@@ -47,6 +49,7 @@ class Login extends Component {
             <h1 className="login-heading-mobile">Login</h1>
           </div>
 
+          {/* Input Form */}
           <form className="Login-box" onSubmit={this.getData}>
             <img
               src="img/MyProject_images/Frame 274logo.svg"
