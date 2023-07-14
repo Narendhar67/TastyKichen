@@ -1,0 +1,8 @@
+.banner-container {
+  width: 100vw;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.banner-image {
+  max-width: 100%;
+}

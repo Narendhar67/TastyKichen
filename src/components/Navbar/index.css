@@ -1,0 +1,55 @@
+.Navbar-container {
+  width: 100vw;
+  height: 96px;
+  background: var(--light-blue-gray-50, #f8fafc);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.link {
+  text-decoration: none;
+  margin-right: 12px;
+}
+
+.logo_and_name {
+  display: flex;
+  align-items: center;
+}
+.Navbar-logo {
+  width: 56px;
+  height: 56px;
+}
+.Title {
+  color: #f7931e;
+  font-family: DM Sans;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 32px; /* 133.333% */
+  padding-left: 20px;
+}
+.nav-links {
+  color: var(--light-blue-gray-700, #334155);
+  /* Headline/05 */
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: -0.356px;
+}
+.logout-button {
+  width: 73px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f7931e;
+  color: var(--light-base-white, #fff);
+  /* Action / Button / Small */
+  font-family: Inter;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
