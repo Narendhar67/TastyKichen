@@ -1,11 +1,12 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 import Navbar from '../Navbar'
 import OffersBanner from '../OffersBanner'
+
+import './index.css'
 
 class Home extends Component {
   state = {OffersData: []}
@@ -39,7 +40,7 @@ class Home extends Component {
       <>
         <Navbar />
         {/* Offers Banner */}
-        <div>
+        <div className="Banner">
           <Slider {...settings}>
             {OffersData.map(each => (
               <OffersBanner key={each.id} data={each.image_url} />
