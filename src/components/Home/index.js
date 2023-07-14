@@ -17,7 +17,6 @@ class Home extends Component {
 
   getData = async () => {
     const JwtToken = Cookies.get('jwtToken')
-    console.log(JwtToken)
     const url = 'https://apis.ccbp.in/restaurants-list/offers'
     const options = {
       headers: {Authorization: `bearer ${JwtToken}`},
@@ -25,7 +24,6 @@ class Home extends Component {
     const response = await fetch(url, options)
     const data = await response.json()
     this.setState({OffersData: data.offers})
-    console.log(data)
   }
 
   render() {
