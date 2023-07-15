@@ -1,5 +1,8 @@
 import {Route, Switch} from 'react-router-dom'
 
+import TastyContext from './context/TastyContext'
+
+import ProtectedRoute from './components/ProtectedRoute'
 import Login from './components/Login'
 import Home from './components/Home'
 
@@ -19,12 +22,16 @@ const sortByOptions = [
 ]
 
 const App = () => (
-  <>
-    <Switch>
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/" component={Home} />
-    </Switch>
-  </>
+  <TastyContext.Provider value={{sortByOptions}}>
+    return (
+    <>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <ProtectedRoute exact path="/" component={Home} />
+      </Switch>
+    </>
+    )
+  </TastyContext.Provider>
 )
 
 export default App

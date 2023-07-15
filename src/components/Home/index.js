@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 
 import Slider from 'react-slick'
 
+import TastyContext from '../../context/TastyContext'
 import Navbar from '../Navbar'
 import OffersBanner from '../OffersBanner'
 
@@ -35,17 +36,25 @@ class Home extends Component {
     const {OffersData} = this.state
 
     return (
-      <>
-        <Navbar />
-        {/* Offers Banner */}
-        <div className="Banner">
-          <Slider {...settings}>
-            {OffersData.map(each => (
-              <OffersBanner key={each.id} data={each.image_url} />
-            ))}
-          </Slider>
-        </div>
-      </>
+      <TastyContext.Consumer>
+        {value => {
+          const {sortByOptions} = value
+          console.log(sortByOptions)
+          return (
+            <>
+              <Navbar />
+              {/* Offers Banner */}
+              <div className="Banner">
+                <Slider {...settings}>
+                  {OffersData.map(each => (
+                    <OffersBanner key={each.id} data={each.image_url} />
+                  ))}
+                </Slider>
+              </div>
+            </>
+          )
+        }}
+      </TastyContext.Consumer>
     )
   }
 }
