@@ -1,3 +1,7 @@
+.link {
+  text-decoration: none;
+}
+
 .Restaurant-thumb-container {
   display: flex;
   align-items: center;
