@@ -9,6 +9,7 @@ import TastyContext from '../../context/TastyContext'
 import Navbar from '../Navbar'
 import OffersBanner from '../OffersBanner'
 import RestaurantThumbnail from '../RestaurantThumbnail'
+import Footer from '../Footer'
 
 import sortByOptionsLogo from '../../images/sort.png'
 
@@ -170,7 +171,9 @@ class Home extends Component {
                   >
                     <AiOutlineLeft />
                   </button>
-                  <p className="PageNumbers">{`${activePage} of ${totalPages}`}</p>
+                  <p className="PageNumbers">
+                    <span>{activePage}</span> of {totalPages}
+                  </p>
                   <button
                     onClick={this.onRightArrowClick}
                     type="button"
@@ -180,6 +183,7 @@ class Home extends Component {
                   </button>
                 </div>
               </div>
+              <Footer />
             </>
           )
         }}

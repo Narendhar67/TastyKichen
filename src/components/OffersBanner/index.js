@@ -5,7 +5,7 @@ const OffersBanner = props => {
 
   return (
     <div className="banner-container">
-      <img src={data} alt="banner" className="banner-image" />
+      <img src={data} alt="offer" className="banner-image" />
     </div>
   )
 }
