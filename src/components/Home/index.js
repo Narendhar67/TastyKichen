@@ -27,7 +27,7 @@ const convertData = d => ({
 class Home extends Component {
   state = {
     OffersData: [],
-    sortBy: 'Highest',
+    sortBy: 'Lowest',
     RestaurantsData: [],
     activePage: 1,
     totalPages: 0,
