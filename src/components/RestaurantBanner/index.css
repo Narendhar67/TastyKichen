@@ -1,8 +1,120 @@
 .Restaurant-Banner {
   height: 372.52px;
   width: 100vw;
-  background-image: url('../../images/transparentVeg.png'),
-    url('../../images/RestaurantBackground1.png');
+  background-image: url('../../images/RestaurantBackground1.png');
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 30px 0px 30px 0px;
+  overflow: hidden;
+}
+.Restaurant-details {
+  background-image: url('../../images/transparentVeg.png');
+  background-size: contain;
+  height: 100%;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Restaurant-banner-image {
+  width: 445px;
+  height: 280px;
+  border-radius: 8px;
+}
+
+.Restaurant-name-details {
+  margin-left: 18px;
+}
+.Restaurant-heading {
+  color: #fff;
+  font-family: Roboto;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 48px; /* 133.333% */
+  letter-spacing: 0.2px;
+  display: block;
+}
+.Restaurant-cuisine {
+  color: var(--light-base-white, #fff);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  display: block;
+}
+.rating-and-price {
+  display: flex;
+  align-items: center;
+}
+.restaurant-rating {
+  width: 120px;
+}
+.border-left {
+  border-left: 1px solid #e2e8f0;
+  padding-left: 30px;
+}
+.small-box {
+  display: flex;
+  align-items: center;
+}
+.star {
+  width: 12px;
+  height: 12px;
+  color: #fff;
+}
+.rating-text {
+  color: #fff;
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  margin-left: 4px;
+  margin: 2px 0px 2px 0px;
+}
+.reviewsCount {
+  color: var(--light-blue-gray-200, #e2e8f0);
+  font-family: DM Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 2px 0px 2px 0px;
+}
+
+@media all and (max-width: 576px) {
+  .image-container {
+    width: 35%;
+  }
+  .Restaurant-banner-image {
+    width: 221px;
+    height: 221px;
+    border-radius: 133px;
+    position: relative;
+    bottom: 20px;
+    right: 110px;
+    flex-shrink: 0;
+  }
+  .Restaurant-heading {
+    font-size: 16px;
+    margin: 2px 0px 2px 0px;
+  }
+  .Restaurant-cuisine {
+    font-size: 12px;
+    margin: 2px 0px 2px 0px;
+  }
+  .Restaurant-Banner {
+    height: 228px;
+  }
+  .restaurant-rating {
+    width: 80px;
+  }
+  .border-left {
+    padding-left: 10px;
+  }
+  .Restaurant-name-details {
+    margin-left: 4px;
+    width: 70%;
+  }
 }

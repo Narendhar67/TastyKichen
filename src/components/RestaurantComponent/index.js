@@ -6,6 +6,17 @@ import Navbar from '../Navbar'
 import Footer from '../Footer'
 import RestaurantBanner from '../RestaurantBanner'
 
+const convertData = data => ({
+  id: data.id,
+  imageUrl: data.image_url,
+  costForTwo: data.cost_for_two,
+  cuisine: data.cuisine,
+  location: data.location,
+  reviewsCount: data.reviews_count,
+  name: data.name,
+  rating: data.rating,
+})
+
 class RestaurantComponent extends Component {
   state = {restaurantData: {}, foodItems: []}
 
@@ -24,14 +35,22 @@ class RestaurantComponent extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
+    if (response.ok === true) {
+      const foodData = data.food_items
+      const RData = convertData(data)
+
+      this.setState({restaurantData: RData, foodItems: foodData})
+    }
     console.log(data)
   }
 
   render() {
+    const {restaurantData} = this.state
+
     return (
       <>
         <Navbar />
-        <RestaurantBanner />
+        <RestaurantBanner restaurantData={restaurantData} />
 
         <Footer />
       </>
