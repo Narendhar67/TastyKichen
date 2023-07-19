@@ -3,17 +3,38 @@ import Cookies from 'js-cookie'
 
 import Slider from 'react-slick'
 
+import {AiOutlineLeft, AiOutlineRight} from 'react-icons/ai'
+
 import TastyContext from '../../context/TastyContext'
 import Navbar from '../Navbar'
 import OffersBanner from '../OffersBanner'
+import RestaurantThumbnail from '../RestaurantThumbnail'
+
+import sortByOptionsLogo from '../../images/sort.png'
 
 import './index.css'
 
+const convertData = d => ({
+  name: d.name,
+  cuisine: d.cuisine,
+  rating: d.user_rating.rating,
+  totalRatings: d.user_rating.total_reviews,
+  imageUrl: d.image_url,
+  id: d.id,
+})
+
 class Home extends Component {
-  state = {OffersData: []}
+  state = {
+    OffersData: [],
+    sortBy: 'Highest',
+    RestaurantsData: [],
+    activePage: 1,
+    totalPages: 0,
+  }
 
   componentDidMount() {
     this.getData()
+    this.getRestaurantsData()
   }
 
   getData = async () => {
@@ -27,19 +48,68 @@ class Home extends Component {
     this.setState({OffersData: data.offers})
   }
 
+  getRestaurantsData = async () => {
+    const {activePage, sortBy} = this.state
+    const limit = 9
+
+    const JwtToken = Cookies.get('jwtToken')
+
+    const offset = (activePage - 1) * limit
+
+    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${limit}&sort_by_rating=${sortBy}`
+    const options = {
+      headers: {Authorization: `bearer ${JwtToken}`},
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+    if (data !== undefined) {
+      const updatedData = data.restaurants.map(each => convertData(each))
+
+      const totalPages = Math.ceil(data.total / 9) // finding total pages count
+
+      this.setState({RestaurantsData: updatedData, totalPages})
+      // console.log(data)
+    }
+  }
+
+  selectedSorting = e => {
+    const SelectedValue = e.target.value
+    this.setState({sortBy: SelectedValue}, this.getRestaurantsData)
+  }
+
+  onRightArrowClick = () => {
+    const {activePage, totalPages} = this.state
+    if (activePage < totalPages) {
+      this.setState(
+        prevState => ({activePage: prevState.activePage + 1}),
+        this.getRestaurantsData,
+      )
+    }
+  }
+
+  onLeftArrowClick = () => {
+    const {activePage} = this.state
+    if (activePage > 1) {
+      this.setState(
+        prevState => ({activePage: prevState.activePage - 1}),
+        this.getRestaurantsData,
+      )
+    }
+  }
+
   render() {
     const settings = {
       dots: true,
       slidesToShow: 1,
       slidesToScroll: 1,
     }
-    const {OffersData} = this.state
+    const {OffersData, RestaurantsData, activePage, totalPages} = this.state
 
     return (
       <TastyContext.Consumer>
         {value => {
           const {sortByOptions} = value
-          console.log(sortByOptions)
+
           return (
             <>
               <Navbar />
@@ -50,6 +120,65 @@ class Home extends Component {
                     <OffersBanner key={each.id} data={each.image_url} />
                   ))}
                 </Slider>
+              </div>
+
+              {/* Popular Restaurants */}
+              <div className="popular-restaurants">
+                <div className="popular-restaurants-header">
+                  <h1 className="popular-restaurants-heading">
+                    Popular Restaurants
+                  </h1>
+                  <div className="popular-restaurants-details">
+                    <p className="popular-restaurants-paragraph">
+                      Select Your favourite restaurant special dish and make
+                      your day happy...
+                    </p>
+
+                    <div className="sort-Container">
+                      <img
+                        alt="logo"
+                        src={sortByOptionsLogo}
+                        className="sortByOptionsLogo"
+                      />
+                      <p className="sortByOptions">Sort by</p>
+                      <select
+                        className="sortByOptions"
+                        onChange={this.selectedSorting}
+                      >
+                        {sortByOptions.map(each => (
+                          <option value={each.value} key={each.id}>
+                            {each.displayText}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <hr className="h-Line" />
+                {/* List of Restaurants */}
+                <ul className="RestaurantsList">
+                  {RestaurantsData.map(each => (
+                    <RestaurantThumbnail key={each.id} data={each} />
+                  ))}
+                </ul>
+                {/* Active Page selection */}
+                <div className="page-selection">
+                  <button
+                    onClick={this.onLeftArrowClick}
+                    type="button"
+                    className="arrow-button"
+                  >
+                    <AiOutlineLeft />
+                  </button>
+                  <p className="PageNumbers">{`${activePage} of ${totalPages}`}</p>
+                  <button
+                    onClick={this.onRightArrowClick}
+                    type="button"
+                    className="arrow-button"
+                  >
+                    <AiOutlineRight />
+                  </button>
+                </div>
               </div>
             </>
           )

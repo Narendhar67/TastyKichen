@@ -38,17 +38,17 @@ class Navbar extends Component {
             </div>
           </Link>
           <ul className="nav-links">
-            <li>
+            <li key="home">
               <Link className="link" to="/">
                 Home
               </Link>
             </li>
-            <li>
+            <li key="cart">
               <Link className="link" to="/cart">
                 Cart
               </Link>
             </li>
-            <li>
+            <li key="logout">
               <button
                 onClick={this.onLogout}
                 type="button"

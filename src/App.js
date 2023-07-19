@@ -23,14 +23,12 @@ const sortByOptions = [
 
 const App = () => (
   <TastyContext.Provider value={{sortByOptions}}>
-    return (
     <>
       <Switch>
         <Route exact path="/login" component={Login} />
         <ProtectedRoute exact path="/" component={Home} />
       </Switch>
     </>
-    )
   </TastyContext.Provider>
 )
 
