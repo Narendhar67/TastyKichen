@@ -34,6 +34,11 @@
   font-weight: 400;
   margin: 4px;
 }
+@media all and (max-width: 576px) {
+  .website-footer-text {
+    font-size: 16px;
+  }
+}
 .social-media-links-container {
   margin-top: 20px;
 }

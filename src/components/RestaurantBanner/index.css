@@ -1,0 +1,8 @@
+.Restaurant-Banner {
+  height: 372.52px;
+  width: 100vw;
+  background-image: url('../../images/transparentVeg.png'),
+    url('../../images/RestaurantBackground1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}

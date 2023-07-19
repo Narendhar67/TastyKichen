@@ -5,6 +5,7 @@ import TastyContext from './context/TastyContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './components/Login'
 import Home from './components/Home'
+import RestaurantComponent from './components/RestaurantComponent'
 
 import './App.css'
 
@@ -27,6 +28,11 @@ const App = () => (
       <Switch>
         <Route exact path="/login" component={Login} />
         <ProtectedRoute exact path="/" component={Home} />
+        <ProtectedRoute
+          exact
+          path="/restaurant/:restrauntId"
+          component={RestaurantComponent}
+        />
       </Switch>
     </>
   </TastyContext.Provider>
