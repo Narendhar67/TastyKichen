@@ -1,0 +1,27 @@
+.food-item-container {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  color: var(--light-blue-gray-700, #334155);
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+.price-container {
+  display: flex;
+  align-items: center;
+}
+.food-image {
+  width: 255px;
+  height: 150px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.list-item {
+  list-style-type: none;
+  margin: 10px 5px 10px 5px;
+}

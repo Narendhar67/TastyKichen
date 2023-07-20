@@ -27,6 +27,7 @@ class Navbar extends Component {
 
   render() {
     const {menuOpened} = this.state
+    const {home, cart} = this.props
 
     return (
       <>
@@ -39,12 +40,12 @@ class Navbar extends Component {
           </Link>
           <ul className="nav-links">
             <li key="home">
-              <Link className="link" to="/">
+              <Link className={home ? 'link Highlight' : 'link'} to="/">
                 Home
               </Link>
             </li>
             <li key="cart">
-              <Link className="link" to="/cart">
+              <Link className={cart ? 'link Highlight' : 'link'} to="/cart">
                 Cart
               </Link>
             </li>

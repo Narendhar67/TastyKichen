@@ -5,6 +5,9 @@ import Cookies from 'js-cookie'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
 import RestaurantBanner from '../RestaurantBanner'
+import FoodItem from '../FoodItem'
+
+import './index.css'
 
 const convertData = data => ({
   id: data.id,
@@ -37,21 +40,25 @@ class RestaurantComponent extends Component {
     const data = await response.json()
     if (response.ok === true) {
       const foodData = data.food_items
+      console.log(foodData)
       const RData = convertData(data)
 
       this.setState({restaurantData: RData, foodItems: foodData})
     }
-    console.log(data)
   }
 
   render() {
-    const {restaurantData} = this.state
+    const {restaurantData, foodItems} = this.state
 
     return (
       <>
         <Navbar />
         <RestaurantBanner restaurantData={restaurantData} />
-
+        <ul className="FoodList">
+          {foodItems.map(each => (
+            <FoodItem data={each} />
+          ))}
+        </ul>
         <Footer />
       </>
     )

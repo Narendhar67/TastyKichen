@@ -113,7 +113,7 @@ class Home extends Component {
 
           return (
             <>
-              <Navbar />
+              <Navbar home />
               {/* Offers Banner */}
               <div className="Banner">
                 <Slider {...settings}>

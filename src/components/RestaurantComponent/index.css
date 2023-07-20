@@ -1,0 +1,8 @@
+.FoodList {
+  list-style-type: none;
+  margin-left: 8%;
+  margin-right: 8%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
