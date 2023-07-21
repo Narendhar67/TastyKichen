@@ -1,4 +1,4 @@
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 import TastyContext from './context/TastyContext'
 
@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Home from './components/Home'
 import RestaurantComponent from './components/RestaurantComponent'
 import Cart from './components/Cart'
+import NotFound from './components/NotFound'
 
 import './App.css'
 
@@ -35,6 +36,8 @@ const App = () => (
           component={RestaurantComponent}
         />
         <ProtectedRoute exact path="/cart" component={Cart} />
+        <Route path="/not-found" component={NotFound} />
+        <Redirect to="/not-found" />
       </Switch>
     </>
   </TastyContext.Provider>
