@@ -56,7 +56,7 @@ class RestaurantComponent extends Component {
         <RestaurantBanner restaurantData={restaurantData} />
         <ul className="FoodList">
           {foodItems.map(each => (
-            <FoodItem data={each} />
+            <FoodItem key={each.id} data={each} />
           ))}
         </ul>
         <Footer />
