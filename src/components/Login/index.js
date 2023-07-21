@@ -96,7 +96,7 @@ class Login extends Component {
         </div>
         <div className="Image">
           <img
-            className="food-image"
+            className="login-image"
             src="img/MyProject_images/Rectangle 1456login_image.png"
             alt="food"
           />

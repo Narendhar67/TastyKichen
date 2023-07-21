@@ -9,10 +9,14 @@ import RatingStar from '../../images/RatingStar.png'
 import './index.css'
 
 class FoodItem extends Component {
-  state = {enableCounter: false, thisItemData: {}}
+  state = {enableCounter: false}
 
   componentDidMount() {
     this.checkingPreviousCartData()
+  }
+
+  disableCounter = () => {
+    this.setState({enableCounter: false})
   }
 
   checkingPreviousCartData = () => {
@@ -26,7 +30,6 @@ class FoodItem extends Component {
       if (thisItemData.length !== 0) {
         this.setState({
           enableCounter: true,
-          thisItemData: thisItemData[0],
         })
       }
     }
@@ -56,13 +59,12 @@ class FoodItem extends Component {
     const {data} = this.props
     const {name, rating, cost, id} = data
     const imageUrl = data.image_url
-    const {enableCounter, thisItemData} = this.state
+    const {enableCounter} = this.state
 
     return (
       <li>
         <div className="food-item-container">
-          <img src={imageUrl} alt="food-logo" className="food-image" />
-
+          <img src={imageUrl} alt="food-logo" className="food-item-image" />
           <div className="food-details-container">
             <p className="restaurant-name">{name}</p>
             <div className="price-container">
@@ -74,7 +76,7 @@ class FoodItem extends Component {
               <span className="rating-thumb">{rating}</span>
             </div>
             {enableCounter ? (
-              <Counter id={id} />
+              <Counter id={id} disableCounter={this.disableCounter} />
             ) : (
               <div>
                 <button

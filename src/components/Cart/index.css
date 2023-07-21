@@ -1,0 +1,78 @@
+.CartItems-list-container {
+  list-style-type: none;
+  margin: 25px 8% 25px 8%;
+  padding-left: 0px;
+  padding: 15px 5% 55px 5%;
+  border: 1px solid var(--main-hover-light, rgba(11, 105, 255, 0.1));
+  background: #f9fbfe;
+}
+.cart-item-headings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media all and (max-width: 576px) {
+  .cart-item-headings {
+    display: none;
+  }
+}
+.heading-name {
+  color: var(--light-blue-gray-600, #475569);
+  font-family: DM Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+}
+.heading-item-name {
+  width: 50%;
+  margin-left: 65px;
+}
+.heading-item-quantity {
+  width: 35%;
+}
+.heading-item-price {
+  width: 15%;
+}
+.horizontal-line {
+  width: 100%;
+  border: 1px dashed #cbd2d9;
+  margin: 25px 0px 25px 0px;
+}
+.total-order {
+  color: var(--basic-900, #3e4c59);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+}
+.total-order-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-price {
+  display: flex;
+  align-items: center;
+  color: var(--basic-900, #3e4c59);
+  text-align: right;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: DM Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+}
+.Place-order-button {
+  display: flex;
+  padding: 8px 16px;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background: #f7931e;
+  color: var(--light-base-white, #fff);
+  font-family: DM Sans;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}

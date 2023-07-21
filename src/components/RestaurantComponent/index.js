@@ -40,7 +40,6 @@ class RestaurantComponent extends Component {
     const data = await response.json()
     if (response.ok === true) {
       const foodData = data.food_items
-      console.log(foodData)
       const RData = convertData(data)
 
       this.setState({restaurantData: RData, foodItems: foodData})

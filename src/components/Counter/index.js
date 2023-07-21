@@ -21,33 +21,46 @@ class Counter extends Component {
 
   updateCartData = () => {
     const {numberOfItems} = this.state
-    const {id} = this.props
+    const {id, getCartData, disableCounter} = this.props
     let Data = localStorage.getItem('cartData')
+
     if (Data !== null) {
       Data = JSON.parse(Data)
-      const itemData = Data.filter(each => each.id === id) // getting Item Data
-      const updatedItemData = {...itemData[0], quantity: numberOfItems} // updating Item data
 
-      // updating Item data in the Cart
-      const updatedCartData = Data.map(each => {
-        if (each.id === id) {
-          return updatedItemData
+      let updatedCartData
+      if (numberOfItems < 1) {
+        // if number of Items less than 1, then it removes that item
+        updatedCartData = Data.filter(each => each.id !== id)
+        if (disableCounter !== undefined) {
+          disableCounter() // it will disable counter and adds enable button
         }
-        return each
-      })
+      } else {
+        const itemData = Data.filter(each => each.id === id) // getting Item Data
+        const updatedItemData = {...itemData[0], quantity: numberOfItems} // updating Item data
+
+        // updating Item data in the Cart
+        updatedCartData = Data.map(each => {
+          if (each.id === id) {
+            return updatedItemData
+          }
+          return each
+        })
+      }
 
       localStorage.setItem('cartData', JSON.stringify(updatedCartData))
+      if (getCartData !== undefined) {
+        getCartData()
+      }
     }
   }
 
   onDecrement = () => {
     const {numberOfItems} = this.state
-    if (numberOfItems > 1) {
+    if (numberOfItems)
       this.setState(
         prevState => ({numberOfItems: prevState.numberOfItems - 1}),
         this.updateCartData,
       )
-    }
   }
 
   onIncrement = () => {

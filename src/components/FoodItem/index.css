@@ -1,7 +1,7 @@
 .food-item-container {
   display: flex;
   align-items: center;
-  margin: 10px 5px 10px 5px;
+  margin: 20px 5px 20px 5px;
 }
 .food-details-container {
   width: 150px;
@@ -23,14 +23,14 @@
   display: flex;
   align-items: center;
 }
-.food-image {
+.food-item-image {
   width: 255px;
   height: 150px;
   border-radius: 8px;
 }
 
 @media all and (max-width: 576px) {
-  .food-image {
+  .food-item-image {
     max-width: 160px;
     max-height: 100px;
   }
