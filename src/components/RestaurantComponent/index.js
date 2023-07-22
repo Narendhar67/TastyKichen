@@ -6,8 +6,14 @@ import Navbar from '../Navbar'
 import Footer from '../Footer'
 import RestaurantBanner from '../RestaurantBanner'
 import FoodItem from '../FoodItem'
+import LoadingSpin from '../LoadingSpin'
 
 import './index.css'
+
+const renderStage = {
+  loading: 'Loading',
+  home: 'Home',
+}
 
 const convertData = data => ({
   id: data.id,
@@ -21,7 +27,11 @@ const convertData = data => ({
 })
 
 class RestaurantComponent extends Component {
-  state = {restaurantData: {}, foodItems: []}
+  state = {
+    restaurantData: {},
+    foodItems: [],
+    renderingStage: renderStage.loading,
+  }
 
   componentDidMount() {
     this.getData()
@@ -42,16 +52,19 @@ class RestaurantComponent extends Component {
       const foodData = data.food_items
       const RData = convertData(data)
 
-      this.setState({restaurantData: RData, foodItems: foodData})
+      this.setState({
+        restaurantData: RData,
+        foodItems: foodData,
+        renderingStage: renderStage.home,
+      })
     }
   }
 
-  render() {
+  renderRestaurantItems = () => {
     const {restaurantData, foodItems} = this.state
 
     return (
       <>
-        <Navbar />
         <RestaurantBanner restaurantData={restaurantData} />
         <ul className="FoodList">
           {foodItems.map(each => (
@@ -59,6 +72,29 @@ class RestaurantComponent extends Component {
           ))}
         </ul>
         <Footer />
+      </>
+    )
+  }
+
+  renderFinal = () => {
+    const {renderingStage} = this.state
+
+    switch (renderingStage) {
+      case renderStage.loading:
+        return <LoadingSpin />
+      case renderStage.home:
+        return this.renderRestaurantItems()
+
+      default:
+        return null
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <Navbar />
+        {this.renderFinal()}
       </>
     )
   }

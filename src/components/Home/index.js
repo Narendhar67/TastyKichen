@@ -10,10 +10,16 @@ import Navbar from '../Navbar'
 import OffersBanner from '../OffersBanner'
 import RestaurantThumbnail from '../RestaurantThumbnail'
 import Footer from '../Footer'
+import LoadingSpin from '../LoadingSpin'
 
 import sortByOptionsLogo from '../../images/sort.png'
 
 import './index.css'
+
+const renderStage = {
+  loading: 'Loading',
+  home: 'Home',
+}
 
 const convertData = d => ({
   name: d.name,
@@ -31,6 +37,7 @@ class Home extends Component {
     RestaurantsData: [],
     activePage: 1,
     totalPages: 0,
+    renderingStage: renderStage.loading,
   }
 
   componentDidMount() {
@@ -46,6 +53,7 @@ class Home extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
+
     this.setState({OffersData: data.offers})
   }
 
@@ -67,9 +75,14 @@ class Home extends Component {
       const updatedData = data.restaurants.map(each => convertData(each))
 
       const totalPages = Math.ceil(data.total / 9) // finding total pages count
-
-      this.setState({RestaurantsData: updatedData, totalPages})
-      // console.log(data)
+      if (response.ok === true) {
+        this.setState({
+          RestaurantsData: updatedData,
+          totalPages,
+          renderingStage: renderStage.home,
+        })
+        // console.log(data)
+      }
     }
   }
 
@@ -98,31 +111,34 @@ class Home extends Component {
     }
   }
 
-  render() {
+  renderBanner = () => {
     const settings = {
       dots: true,
       slidesToShow: 1,
       slidesToScroll: 1,
     }
-    const {OffersData, RestaurantsData, activePage, totalPages} = this.state
+    const {OffersData} = this.state
+
+    return (
+      <div className="Banner">
+        <Slider {...settings}>
+          {OffersData.map(each => (
+            <OffersBanner key={each.id} data={each.image_url} />
+          ))}
+        </Slider>
+      </div>
+    )
+  }
+
+  renderPopularRestaurants = () => {
+    const {RestaurantsData, activePage, totalPages} = this.state
 
     return (
       <TastyContext.Consumer>
         {value => {
           const {sortByOptions} = value
-
           return (
             <>
-              <Navbar home />
-              {/* Offers Banner */}
-              <div className="Banner">
-                <Slider {...settings}>
-                  {OffersData.map(each => (
-                    <OffersBanner key={each.id} data={each.image_url} />
-                  ))}
-                </Slider>
-              </div>
-
               {/* Popular Restaurants */}
               <div className="popular-restaurants">
                 <div className="popular-restaurants-header">
@@ -188,6 +204,31 @@ class Home extends Component {
           )
         }}
       </TastyContext.Consumer>
+    )
+  }
+
+  renderFinal = () => {
+    const {renderingStage} = this.state
+
+    switch (renderingStage) {
+      case renderStage.loading:
+        return <LoadingSpin />
+      case renderStage.home:
+        return this.renderPopularRestaurants()
+
+      default:
+        return null
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <Navbar home />
+        {/* Offers Banner */}
+        {this.renderBanner()}
+        {this.renderFinal()}
+      </>
     )
   }
 }
