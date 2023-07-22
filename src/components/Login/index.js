@@ -23,7 +23,7 @@ class Login extends Component {
     const data = await response.json()
 
     if (response.ok === true) {
-      Cookies.set('jwtToken', data.jwt_token, {expires: 1})
+      Cookies.set('jwt_token', data.jwt_token, {expires: 1})
       this.setState({LoginError: false})
       history.push('/')
     } else {

@@ -46,7 +46,7 @@ class Home extends Component {
   }
 
   getData = async () => {
-    const JwtToken = Cookies.get('jwtToken')
+    const JwtToken = Cookies.get('jwt_token')
     const url = 'https://apis.ccbp.in/restaurants-list/offers'
     const options = {
       headers: {Authorization: `bearer ${JwtToken}`},
@@ -61,7 +61,7 @@ class Home extends Component {
     const {activePage, sortBy} = this.state
     const limit = 9
 
-    const JwtToken = Cookies.get('jwtToken')
+    const JwtToken = Cookies.get('jwt_token')
 
     const offset = (activePage - 1) * limit
 

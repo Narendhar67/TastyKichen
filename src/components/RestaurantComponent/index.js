@@ -42,7 +42,7 @@ class RestaurantComponent extends Component {
     const {params} = match
     const {restrauntId} = params
     const url = `https://apis.ccbp.in/restaurants-list/${restrauntId}`
-    const JwtToken = Cookies.get('jwtToken')
+    const JwtToken = Cookies.get('jwt_token')
     const options = {
       headers: {Authorization: `bearer ${JwtToken}`},
     }
