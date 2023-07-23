@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 
 import {AiOutlineMenu, AiFillCloseCircle} from 'react-icons/ai'
 
-import NavBarLogo from './Logo.svg'
+import NavBarLogo from '../../images/Logo.svg'
 
 import './index.css'
 
