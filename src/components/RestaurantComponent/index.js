@@ -11,6 +11,7 @@ import LoadingSpin from '../LoadingSpin'
 import './index.css'
 
 const renderStage = {
+  initial: 'initial',
   loading: 'Loading',
   home: 'Home',
 }
@@ -30,7 +31,7 @@ class RestaurantComponent extends Component {
   state = {
     restaurantData: {},
     foodItems: [],
-    renderingStage: renderStage.loading,
+    renderingStage: renderStage.initial,
   }
 
   componentDidMount() {
@@ -38,6 +39,7 @@ class RestaurantComponent extends Component {
   }
 
   getData = async () => {
+    this.setState({renderingStage: renderStage.loading})
     const {match} = this.props
     const {params} = match
     const {restrauntId} = params
@@ -64,7 +66,7 @@ class RestaurantComponent extends Component {
     const {restaurantData, foodItems} = this.state
 
     return (
-      <>
+      <div>
         <RestaurantBanner restaurantData={restaurantData} />
         <ul className="FoodList">
           {foodItems.map(each => (
@@ -72,16 +74,22 @@ class RestaurantComponent extends Component {
           ))}
         </ul>
         <Footer />
-      </>
+      </div>
     )
   }
+
+  renderLoader = () => (
+    <div>
+      <LoadingSpin testid="restaurant-details-loader" />
+    </div>
+  )
 
   renderFinal = () => {
     const {renderingStage} = this.state
 
     switch (renderingStage) {
       case renderStage.loading:
-        return <LoadingSpin />
+        return this.renderLoader()
       case renderStage.home:
         return this.renderRestaurantItems()
 

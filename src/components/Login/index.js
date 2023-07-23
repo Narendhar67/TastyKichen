@@ -1,10 +1,16 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 
 import './index.css'
 
 class Login extends Component {
-  state = {username: '', password: '', LoginError: false}
+  state = {
+    username: '',
+    password: '',
+    LoginError: false,
+    errorMsg: '',
+  }
 
   getData = async e => {
     e.preventDefault()
@@ -21,13 +27,14 @@ class Login extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
+    console.log(data)
 
     if (response.ok === true) {
       Cookies.set('jwt_token', data.jwt_token, {expires: 1})
       this.setState({LoginError: false})
-      history.push('/')
+      history.replace('/')
     } else {
-      this.setState({LoginError: true})
+      this.setState({LoginError: true, errorMsg: data.error_msg})
     }
   }
 
@@ -40,7 +47,12 @@ class Login extends Component {
   }
 
   render() {
-    const {username, password, LoginError} = this.state
+    const {username, password, LoginError, errorMsg} = this.state
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div className="bg-container">
         <div className="Login-container">
@@ -53,9 +65,10 @@ class Login extends Component {
           <form className="Login-box" onSubmit={this.getData}>
             <img
               src="img/MyProject_images/Frame 274logo.svg"
-              alt="logo"
+              alt="website logo"
               className="logo"
             />
+            <h1 className="login-logo">Tasty Kitchens</h1>
             <h1 className="login-heading">Login</h1>
 
             <div className="input-box">
@@ -87,18 +100,14 @@ class Login extends Component {
                 Login
               </button>
             </div>
-            {LoginError && (
-              <p className="error_msg">
-                Please enter a valid Username & Password
-              </p>
-            )}
+            {LoginError && <p className="error_msg">{errorMsg}</p>}
           </form>
         </div>
         <div className="Image">
           <img
-            className="login-image"
+            className="website-login-image-lg"
             src="img/MyProject_images/Rectangle 1456login_image.png"
-            alt="food"
+            alt="website logo"
           />
         </div>
       </div>

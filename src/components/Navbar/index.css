@@ -41,6 +41,8 @@
   line-height: 26px; /* 162.5% */
   letter-spacing: -0.356px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media all and (max-width: 576px) {

@@ -118,3 +118,7 @@
     width: 70%;
   }
 }
+.reviews-count-container {
+  display: flex;
+  align-items: center;
+}

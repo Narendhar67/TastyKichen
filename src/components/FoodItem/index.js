@@ -63,17 +63,18 @@ class FoodItem extends Component {
 
     return (
       <li>
+        {/* testid="foodItem" */}
         <div className="food-item-container">
           <img src={imageUrl} alt="food-logo" className="food-item-image" />
           <div className="food-details-container">
-            <p className="restaurant-name">{name}</p>
+            <h1 className="restaurant-name">{name}</h1>
             <div className="price-container">
               <FaRupeeSign className="price" />
-              <span className="price">{cost}</span>
+              <p className="price">{cost}</p>
             </div>
             <div>
               <img src={RatingStar} alt="star" />{' '}
-              <span className="rating-thumb">{rating}</span>
+              <p className="rating-thumb">{rating}</p>
             </div>
             {enableCounter ? (
               <Counter id={id} disableCounter={this.disableCounter} />

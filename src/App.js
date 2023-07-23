@@ -1,7 +1,5 @@
 import {Route, Switch, Redirect} from 'react-router-dom'
 
-import TastyContext from './context/TastyContext'
-
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './components/Login'
 import Home from './components/Home'
@@ -25,22 +23,22 @@ const sortByOptions = [
 ]
 
 const App = () => (
-  <TastyContext.Provider value={{sortByOptions}}>
-    <>
-      <Switch>
-        <Route exact path="/login" component={Login} />
-        <ProtectedRoute exact path="/" component={Home} />
-        <ProtectedRoute
-          exact
-          path="/restaurant/:restrauntId"
-          component={RestaurantComponent}
-        />
-        <ProtectedRoute exact path="/cart" component={Cart} />
-        <Route path="/not-found" component={NotFound} />
-        <Redirect to="/not-found" />
-      </Switch>
-    </>
-  </TastyContext.Provider>
+  <>
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <ProtectedRoute exact path="/">
+        <Home sortByOptions={sortByOptions} />
+      </ProtectedRoute>
+      <ProtectedRoute
+        exact
+        path="/restaurant/:restrauntId"
+        component={RestaurantComponent}
+      />
+      <ProtectedRoute exact path="/cart" component={Cart} />
+      <Route path="/not-found" component={NotFound} />
+      <Redirect to="/not-found" />
+    </Switch>
+  </>
 )
 
 export default App

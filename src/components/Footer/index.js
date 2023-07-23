@@ -18,17 +18,25 @@ export default function Footer() {
           alt="website-footer-logo"
           className="website-footer-logo"
         />
-        <p className="website-footer-Name">Tasty Kitchens</p>
+        <h1 className="website-footer-Name">Tasty Kitchen</h1>
       </div>
       <p className="website-footer-text">
-        The only thing we are serious about is food. 
+        The only thing we are serious about is food. Contact us on
       </p>
-      <p className="website-footer-text">Contact us on</p>
       <div className="social-media-links-container">
-        <FaPinterestSquare className="social-media-icon" />
-        <FaInstagram className="social-media-icon" />
-        <FaTwitter className="social-media-icon" />
-        <FaFacebookSquare className="social-media-icon" />
+        <FaPinterestSquare
+          testid="pintrest-social-icon"
+          className="social-media-icon"
+        />
+        <FaInstagram
+          testid="instagram-social-icon"
+          className="social-media-icon"
+        />
+        <FaTwitter testid="twitter-social-icon" className="social-media-icon" />
+        <FaFacebookSquare
+          testid="facebook-social-icon"
+          className="social-media-icon"
+        />
       </div>
     </div>
   )

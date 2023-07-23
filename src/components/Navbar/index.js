@@ -20,7 +20,7 @@ class Navbar extends Component {
   }
 
   onLogout = () => {
-    Cookies.remove('jwtToken')
+    Cookies.remove('jwt_token')
     const {history} = this.props
     history.replace('/login')
   }
@@ -31,22 +31,26 @@ class Navbar extends Component {
 
     return (
       <>
-        <nav className="Navbar-container">
+        <ul className="Navbar-container">
           <Link to="/" className="link">
-            <div className="logo_and_name">
-              <img src={NavBarLogo} alt="Navbar-logo" className="Navbar-logo" />
+            <li className="logo_and_name">
+              <img
+                src={NavBarLogo}
+                alt="website logo"
+                className="Navbar-logo"
+              />
               <p className="Title">Tasty Kitchens</p>
-            </div>
+            </li>
           </Link>
           <ul className="nav-links">
             <li key="home">
-              <Link className={home ? 'link Highlight' : 'link'} to="/">
-                Home
+              <Link className="link" to="/">
+                <p className={home ? 'link Highlight' : 'link'}>Home</p>
               </Link>
             </li>
             <li key="cart">
-              <Link className={cart ? 'link Highlight' : 'link'} to="/cart">
-                Cart
+              <Link className="link" to="/cart">
+                <p className={cart ? 'link Highlight' : 'link'}>Cart</p>
               </Link>
             </li>
             <li key="logout">
@@ -66,19 +70,19 @@ class Navbar extends Component {
           >
             <AiOutlineMenu />
           </button>
-        </nav>
+        </ul>
         {/* mobile menu */}
         {menuOpened && (
           <div className="mobile-menu">
             <ul className="nav-links-mobile">
               <li>
                 <Link className="link" to="/">
-                  Home
+                  <p>Home</p>
                 </Link>
               </li>
               <li>
                 <Link className="link" to="/cart">
-                  Cart
+                  <p>Cart</p>
                 </Link>
               </li>
               <li>

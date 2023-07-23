@@ -4,9 +4,9 @@ const OffersBanner = props => {
   const {data} = props
 
   return (
-    <div className="banner-container">
+    <li className="banner-container">
       <img src={data} alt="offer" className="banner-image" />
-    </div>
+    </li>
   )
 }
 

@@ -1,0 +1,14 @@
+.Counter-container {
+  display: flex;
+  align-items: center;
+  max-height: 20px;
+}
+.quantityButtons {
+  margin-right: 8px;
+  background-color: transparent;
+  border-radius: 2.25px;
+  border: 1px solid #475569;
+}
+.plusButton {
+  margin-left: 8px;
+}

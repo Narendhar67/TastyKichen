@@ -42,7 +42,10 @@ const RestaurantBanner = props => {
                 <img src={star} alt="star" className="star" />
                 <p className="rating-text">{rating}</p>
               </div>
-              <p className="reviewsCount">{Count} Ratings</p>
+              <div className="reviews-count-container">
+                <p className="reviewsCount">{reviewsCount}</p>
+                <p className="reviewsCount"> Ratings</p>
+              </div>
             </div>
             <div className="restaurant-rating border-left">
               <div className="small-box">

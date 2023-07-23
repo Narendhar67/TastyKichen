@@ -132,3 +132,24 @@
   font-weight: 400;
   line-height: normal;
 }
+.login-logo {
+  color: #f7931e;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: DM Sans;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 32px; /* 133.333% */
+}
+.website-login-image-lg {
+  height: 100vh;
+}
+
+@media all and (max-width: 576px) {
+  .login-logo {
+    display: none;
+  }
+  .website-login-image-lg {
+    display: none;
+  }
+}

@@ -2,7 +2,7 @@ import {Component} from 'react'
 
 import './index.css'
 
-class Counter extends Component {
+class CartCounter extends Component {
   state = {numberOfItems: 1}
 
   componentDidMount() {
@@ -10,12 +10,12 @@ class Counter extends Component {
   }
 
   updateNumberOfItems = () => {
-    const {id} = this.props
+    const {id, quantity} = this.props
     let Data = localStorage.getItem('cartData')
     if (Data !== null) {
       Data = JSON.parse(Data)
       const itemData = Data.filter(each => each.id === id)
-      this.setState({numberOfItems: itemData[0].quantity})
+      this.setState({numberOfItems: quantity})
     }
   }
 
@@ -75,7 +75,7 @@ class Counter extends Component {
 
     return (
       <div className="Counter-container">
-        {/* testid="decrement-count" */}
+        {/* testid="decrement-quantity" */}
         <button
           className="quantityButtons"
           type="button"
@@ -83,10 +83,9 @@ class Counter extends Component {
         >
           -
         </button>
-
-        {/* testid="active-count" */}
+        {/* testid="item-quantity" */}
         <p>{numberOfItems}</p>
-        {/* testid="increment-count" */}
+        {/* testid="increment-quantity" */}
         <button
           className="quantityButtons plusButton"
           type="button"
@@ -99,4 +98,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter
+export default CartCounter

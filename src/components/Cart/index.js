@@ -57,11 +57,12 @@ class Cart extends Component {
           ))}
           <hr className="horizontal-line" />
           <div className="total-order-container">
-            <p className="total-order">Order Total :</p>
+            <h1 className="total-order">Order Total :</h1>
             <div className="total-order-price-container">
               <p className="total-price">
                 <FaRupeeSign />
                 <span>{`${totalPrice}.00`}</span>
+                {/* testid="total-price" */}
               </p>
               <div>
                 <button

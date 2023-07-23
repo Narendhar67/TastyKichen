@@ -1,0 +1,10 @@
+
+
+
+
+
+testid="restaurants-list-loader"
+
+
+
+testid="restaurant-item"

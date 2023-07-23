@@ -10,13 +10,10 @@ const RestaurantThumbnail = props => {
 
   return (
     <li>
+      {/* testid="restaurant-item" */}
       <Link to={`./restaurant/${id}`} className="link">
         <div className="Restaurant-thumb-container">
-          <img
-            src={imageUrl}
-            alt="restaurant-logo"
-            className="restaurant-image"
-          />
+          <img src={imageUrl} alt="restaurant" className="restaurant-image" />
           <div className="restaurant-details-container">
             <p className="restaurant-name">{name}</p>
             <p className="restaurant-cuisine">{cuisine}</p>
