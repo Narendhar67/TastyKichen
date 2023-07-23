@@ -63,7 +63,6 @@ class Login extends Component {
             {/* mobile logo */}
             <div className="mobile-logo">
               <img src="mobileFoodImage" alt="mobile login" />
-              <h1 className="login-heading-mobile">Login</h1>
             </div>
 
             <img

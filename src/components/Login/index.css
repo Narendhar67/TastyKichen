@@ -61,9 +61,6 @@
 }
 
 @media all and (max-width: 576px) {
-  .login-heading {
-    display: none;
-  }
   .food-image {
     display: none;
   }
