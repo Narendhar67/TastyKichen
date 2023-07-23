@@ -44,6 +44,11 @@
   font-weight: 500;
   line-height: 40px; /* 125% */
 }
+@media all and (min-width: 576px) {
+  .login-heading-mobile {
+    display: none;
+  }
+}
 .mobile-logo {
   display: none;
   width: 100%;
