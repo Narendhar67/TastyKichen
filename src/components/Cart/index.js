@@ -57,7 +57,7 @@ class Cart extends Component {
           ))}
           <hr className="horizontal-line" />
           <div className="total-order-container">
-            <h1 className="total-order">Order Total :</h1>
+            <h1 className="total-order">Order Total:</h1>
             <div className="total-order-price-container">
               <p className="total-price">
                 <FaRupeeSign />

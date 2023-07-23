@@ -219,14 +219,14 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <div>
-      <LoadingSpin testid="restaurants-list-loader" />
+    <div testid="restaurants-list-loader">
+      <LoadingSpin />
     </div>
   )
 
   renderBannerLoader = () => (
-    <div>
-      <LoadingSpin testid="restaurants-offers-loader" />
+    <div testid="restaurants-offers-loader">
+      <LoadingSpin />
     </div>
   )
 

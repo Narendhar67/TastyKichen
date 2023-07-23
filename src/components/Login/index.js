@@ -2,6 +2,8 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 
+import mobileFoodImage from '../../images/mobile_food_img.png'
+
 import './index.css'
 
 class Login extends Component {
@@ -58,6 +60,7 @@ class Login extends Component {
         <div className="Login-container">
           {/* mobile logo */}
           <div className="mobile-logo">
+            <img src="mobileFoodImage" alt="mobile login" />
             <h1 className="login-heading-mobile">Login</h1>
           </div>
 
@@ -107,7 +110,7 @@ class Login extends Component {
           <img
             className="website-login-image-lg"
             src="img/MyProject_images/Rectangle 1456login_image.png"
-            alt="website logo"
+            alt="website login"
           />
         </div>
       </div>
