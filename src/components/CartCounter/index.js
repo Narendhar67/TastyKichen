@@ -10,11 +10,11 @@ class CartCounter extends Component {
   }
 
   updateNumberOfItems = () => {
-    const {id, quantity} = this.props
+    const {quantity} = this.props
     let Data = localStorage.getItem('cartData')
     if (Data !== null) {
       Data = JSON.parse(Data)
-      const itemData = Data.filter(each => each.id === id)
+      // const itemData = Data.filter(each => each.id === id)
       this.setState({numberOfItems: quantity})
     }
   }
@@ -80,16 +80,18 @@ class CartCounter extends Component {
           className="quantityButtons"
           type="button"
           onClick={this.onDecrement}
+          testid="decrement-quantity"
         >
           -
         </button>
         {/* testid="item-quantity" */}
-        <p>{numberOfItems}</p>
+        <p testid="item-quantity">{numberOfItems}</p>
         {/* testid="increment-quantity" */}
         <button
           className="quantityButtons plusButton"
           type="button"
           onClick={this.onIncrement}
+          testid="increment-quantity"
         >
           +
         </button>

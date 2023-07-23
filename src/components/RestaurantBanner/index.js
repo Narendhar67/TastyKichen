@@ -15,12 +15,12 @@ const RestaurantBanner = props => {
     rating,
   } = restaurantData
 
-  let Count = reviewsCount
+  //   let Count = reviewsCount
 
-  if (reviewsCount > 100) {
-    const count = Math.round(reviewsCount / 100)
-    Count = `${count * 100}+`
-  }
+  //   if (reviewsCount > 100) {
+  //     const count = Math.round(reviewsCount / 100)
+  //     Count = `${count * 100}+`
+  //   }
 
   return (
     <div className="Restaurant-Banner">

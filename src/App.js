@@ -26,9 +26,11 @@ const App = () => (
   <>
     <Switch>
       <Route exact path="/login" component={Login} />
-      <ProtectedRoute exact path="/">
-        <Home sortByOptions={sortByOptions} />
-      </ProtectedRoute>
+      <ProtectedRoute
+        exact
+        path="/"
+        component={() => <Home sortByOptions={sortByOptions} />}
+      />
       <ProtectedRoute
         exact
         path="/restaurant/:restrauntId"

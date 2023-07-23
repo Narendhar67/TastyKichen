@@ -11,7 +11,7 @@ const CartItem = props => {
   /* testid="cartItem" */
 
   return (
-    <li>
+    <li testid="cartItem">
       <div className="cart-item-container">
         <img src={imageUrl} alt="cart-food-item" className="cart-food-image" />
         <div className="cart-item-details-container">

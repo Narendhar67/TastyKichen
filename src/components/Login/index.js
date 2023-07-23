@@ -27,7 +27,7 @@ class Login extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
+    //  console.log(data)
 
     if (response.ok === true) {
       Cookies.set('jwt_token', data.jwt_token, {expires: 1})
