@@ -62,7 +62,7 @@ class FoodItem extends Component {
     const {enableCounter} = this.state
 
     return (
-      <li testid="foodItem">
+      <li>
         {/* testid="foodItem" */}
         <div className="food-item-container">
           <img src={imageUrl} alt="food-logo" className="food-item-image" />

@@ -80,18 +80,16 @@ class CartCounter extends Component {
           className="quantityButtons"
           type="button"
           onClick={this.onDecrement}
-          testid="decrement-quantity"
         >
           -
         </button>
         {/* testid="item-quantity" */}
-        <p testid="item-quantity">{numberOfItems}</p>
+        <p>{numberOfItems}</p>
         {/* testid="increment-quantity" */}
         <button
           className="quantityButtons plusButton"
           type="button"
           onClick={this.onIncrement}
-          testid="increment-quantity"
         >
           +
         </button>

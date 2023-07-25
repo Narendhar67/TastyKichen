@@ -79,7 +79,8 @@ class RestaurantComponent extends Component {
   }
 
   renderLoader = () => (
-    <div testid="restaurant-details-loader">
+    <div>
+      {/* testid="restaurant-details-loader" */}
       <LoadingSpin />
     </div>
   )

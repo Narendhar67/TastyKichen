@@ -61,7 +61,7 @@ class Cart extends Component {
             <div className="total-order-price-container">
               <p className="total-price">
                 <FaRupeeSign />
-                <span testid="total-price">{`${totalPrice}.00`}</span>
+                <span>{`${totalPrice}.00`}</span>
                 {/* testid="total-price" */}
               </p>
               <div>

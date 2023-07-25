@@ -57,13 +57,17 @@ class Login extends Component {
 
     return (
       <div className="bg-container">
+        <div>
+          <img
+            className="mobile-logo"
+            src={mobileFoodImage}
+            alt="mobile login"
+          />
+        </div>
         <div className="Login-container">
           {/* Input Form */}
           <form className="Login-box" onSubmit={this.getData}>
             {/* mobile logo */}
-            <div className="mobile-logo">
-              <img src="mobileFoodImage" alt="mobile login" />
-            </div>
 
             <img
               src="img/MyProject_images/Frame 274logo.svg"

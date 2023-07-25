@@ -193,21 +193,18 @@ class Home extends Component {
               onClick={this.onLeftArrowClick}
               type="button"
               className="arrow-button"
-              testid="pagination-left-button"
             >
               <AiOutlineLeft />
             </button>
             {/* testid="active-page-number" */}
             <p className="PageNumbers">
-              <span testid="active-page-number">{activePage}</span> of{' '}
-              {totalPages}
+              <span>{activePage}</span> of {totalPages}
             </p>
             {/* testid="pagination-right-button" */}
             <button
               onClick={this.onRightArrowClick}
               type="button"
               className="arrow-button"
-              testid="pagination-right-button"
             >
               <AiOutlineRight />
             </button>
@@ -219,13 +216,15 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <div testid="restaurants-list-loader">
+    <div>
+      {/* testid="restaurants-list-loader" */}
       <LoadingSpin />
     </div>
   )
 
   renderBannerLoader = () => (
-    <div testid="restaurants-offers-loader">
+    <div>
+      {/* testid="restaurants-offers-loader" */}
       <LoadingSpin />
     </div>
   )
