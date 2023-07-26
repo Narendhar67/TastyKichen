@@ -5,10 +5,10 @@
 }
 .food-details-container {
   width: 150px;
-  margin-left: 10px;
+  margin-left: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .price {
@@ -18,6 +18,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
+  margin: 6px 0px 6px 0px;
+}
+.rating-thumb {
+  margin: 6px 0px 6px 0px;
 }
 .price-container {
   display: flex;
@@ -27,13 +31,6 @@
   width: 255px;
   height: 150px;
   border-radius: 8px;
-}
-
-@media all and (max-width: 576px) {
-  .food-item-image {
-    max-width: 160px;
-    max-height: 100px;
-  }
 }
 
 .Add-button {
@@ -47,4 +44,21 @@
   padding: 8px 16px;
   text-align: center;
   margin-top: 8px;
+}
+
+@media all and (max-width: 576px) {
+  .food-item-image {
+    max-width: 160px;
+    max-height: 100px;
+  }
+  .price {
+    font-size: 12px;
+    margin: 4px 0px 4px 0px;
+  }
+  .Add-button {
+    padding: 4px 12px;
+  }
+  .rating-thumb {
+    margin: 4px 0px 4px 0px;
+  }
 }

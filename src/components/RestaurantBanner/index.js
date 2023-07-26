@@ -44,7 +44,7 @@ const RestaurantBanner = props => {
               </div>
               <div className="reviews-count-container">
                 <p className="reviewsCount">{reviewsCount}</p>
-                <p className="reviewsCount"> Ratings</p>
+                <p className="reviewsCount">_Ratings</p>
               </div>
             </div>
             <div className="restaurant-rating border-left">

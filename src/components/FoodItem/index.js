@@ -72,7 +72,7 @@ class FoodItem extends Component {
               <FaRupeeSign className="price" />
               <p className="price">{cost}</p>
             </div>
-            <div>
+            <div className="price-container">
               <img src={RatingStar} alt="star" />{' '}
               <p className="rating-thumb">{rating}</p>
             </div>
