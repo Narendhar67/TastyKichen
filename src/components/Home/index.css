@@ -12,7 +12,7 @@
   justify-content: space-between;
   align-items: center;
 }
-@media all and (max-width: 576px) {
+@media all and (max-width: 768px) {
   .popular-restaurants-details {
     display: flex;
     flex-direction: column;
@@ -39,6 +39,7 @@
 .sort-Container {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 .sortByOptionsLogo {
   width: 24px;
@@ -89,4 +90,39 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+.search-container {
+  border: 2px solid #4f635e;
+  border-radius: 4px;
+  padding: 3px 6px 3px 6px;
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  border: none;
+
+  outline: none;
+  cursor: text;
+  color: #1c1d21;
+  font-family: 'Roboto';
+}
+.search-button {
+  border: none;
+  border-left: 1px solid #4f635e;
+  background-color: transparent;
+  padding-left: 6px;
+  cursor: pointer;
+  outline: none;
+}
+.No-Restaurants {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.No-Restaurants-heading {
+  color: #cc0c3c;
+  font-family: 'Bree Serif';
+  font-size: 40px;
 }

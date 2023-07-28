@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 import {AiOutlineLeft, AiOutlineRight} from 'react-icons/ai'
+import {BsSearch} from 'react-icons/bs'
 
 import Navbar from '../Navbar'
 import OffersBanner from '../OffersBanner'
@@ -36,12 +37,14 @@ const convertData = d => ({
 class Home extends Component {
   state = {
     OffersData: [],
+    searchQuery: '',
     sortBy: 'Lowest',
     RestaurantsData: [],
     activePage: 1,
     totalPages: 0,
     renderingStage: renderStage.initial,
     offersStage: renderStage.initial,
+    errorMessage: '',
   }
 
   componentDidMount() {
@@ -68,32 +71,46 @@ class Home extends Component {
   getRestaurantsData = async () => {
     this.setState({renderingStage: renderStage.loading})
 
-    const {activePage, sortBy} = this.state
+    const {activePage, sortBy, searchQuery} = this.state
     const limit = 9
 
     const JwtToken = Cookies.get('jwt_token')
 
     const offset = (activePage - 1) * limit
 
-    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${limit}&sort_by_rating=${sortBy}`
+    const url = `https://apis.ccbp.in/restaurants-list?search=${searchQuery}&offset=${offset}&limit=${limit}&sort_by_rating=${sortBy}`
     const options = {
       headers: {Authorization: `bearer ${JwtToken}`},
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    if (data !== undefined) {
+
+    if (response.ok === true) {
       const updatedData = data.restaurants.map(each => convertData(each))
 
       const totalPages = Math.ceil(data.total / 9) // finding total pages count
-      if (response.ok === true) {
-        this.setState({
-          RestaurantsData: updatedData,
-          totalPages,
-          renderingStage: renderStage.home,
-        })
-        // console.log(data)
-      }
+
+      this.setState({
+        RestaurantsData: updatedData,
+        totalPages,
+        renderingStage: renderStage.home,
+      })
+      // console.log(data)
+    } else {
+      this.setState({
+        RestaurantsData: [],
+        errorMessage: data.error_message,
+        renderingStage: renderStage.home,
+      })
     }
+  }
+
+  updateSearchQ = e => {
+    this.setState({searchQuery: e.target.value})
+  }
+
+  onSearchClick = () => {
+    this.getRestaurantsData()
   }
 
   selectedSorting = e => {
@@ -142,45 +159,11 @@ class Home extends Component {
     )
   }
 
-  renderPopularRestaurants = () => {
-    const {RestaurantsData, sortBy, activePage, totalPages} = this.state
-    const {sortByOptions} = this.props
-
-    return (
-      <>
-        {/* Popular Restaurants */}
-        <div className="popular-restaurants">
-          <div className="popular-restaurants-header">
-            <h1 className="popular-restaurants-heading">Popular Restaurants</h1>
-            <div className="popular-restaurants-details">
-              <p className="popular-restaurants-paragraph">
-                Select Your favourite restaurant special dish and make your day
-                happy...
-              </p>
-
-              <div className="sort-Container">
-                <img
-                  alt="logo"
-                  src={sortByOptionsLogo}
-                  className="sortByOptionsLogo"
-                />
-                <p className="sortByOptions">Sort by</p>
-                <select
-                  className="sortByOptions"
-                  onChange={this.selectedSorting}
-                  value={sortBy}
-                >
-                  {sortByOptions.map(each => (
-                    <option value={each.value} key={each.id}>
-                      {each.displayText}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-          <hr className="h-Line" />
-          {/* List of Restaurants */}
+  ListOfRestaurants = () => {
+    const {RestaurantsData, errorMessage, activePage, totalPages} = this.state
+    if (RestaurantsData.length > 0) {
+      return (
+        <>
           <ul className="RestaurantsList">
             {RestaurantsData.map(each => (
               <RestaurantThumbnail key={each.id} data={each} />
@@ -209,6 +192,71 @@ class Home extends Component {
               <AiOutlineRight />
             </button>
           </div>
+        </>
+      )
+    }
+    return (
+      <div className="No-Restaurants">
+        <h1 className="No-Restaurants-heading">{errorMessage}</h1>
+      </div>
+    )
+  }
+
+  renderPopularRestaurants = () => {
+    const {searchQuery, sortBy} = this.state
+    const {sortByOptions} = this.props
+
+    return (
+      <>
+        {/* Popular Restaurants */}
+        <div className="popular-restaurants">
+          <div className="popular-restaurants-header">
+            <h1 className="popular-restaurants-heading">Popular Restaurants</h1>
+            <div className="popular-restaurants-details">
+              <p className="popular-restaurants-paragraph">
+                Select Your favourite restaurant special dish and make your day
+                happy...
+              </p>
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="search-input"
+                  value={searchQuery}
+                  onChange={this.updateSearchQ}
+                />
+                <button
+                  onClick={this.onSearchClick}
+                  type="button"
+                  className="search-button"
+                >
+                  <BsSearch />
+                </button>
+              </div>
+
+              <div className="sort-Container">
+                <img
+                  alt="logo"
+                  src={sortByOptionsLogo}
+                  className="sortByOptionsLogo"
+                />
+                <p className="sortByOptions">Sort by</p>
+                <select
+                  className="sortByOptions"
+                  onChange={this.selectedSorting}
+                  value={sortBy}
+                >
+                  {sortByOptions.map(each => (
+                    <option value={each.value} key={each.id}>
+                      {each.displayText}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr className="h-Line" />
+          {/* List of Restaurants */ this.ListOfRestaurants()}
         </div>
         <Footer />
       </>
