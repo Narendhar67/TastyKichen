@@ -33,6 +33,7 @@ class Login extends Component {
 
     if (response.ok === true) {
       Cookies.set('jwt_token', data.jwt_token, {expires: 1})
+      Cookies.set('tasty_user', username, {expires: 1})
       this.setState({LoginError: false})
       history.replace('/')
     } else {

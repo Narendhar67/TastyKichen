@@ -6,6 +6,7 @@ import Home from './components/Home'
 import RestaurantComponent from './components/RestaurantComponent'
 import Cart from './components/Cart'
 import NotFound from './components/NotFound'
+import Profile from './components/Profile'
 
 import './App.css'
 
@@ -31,6 +32,7 @@ const App = () => (
         path="/"
         component={() => <Home sortByOptions={sortByOptions} />}
       />
+      <ProtectedRoute path="/profile" component={Profile} />
       <ProtectedRoute
         exact
         path="/restaurant/:restrauntId"

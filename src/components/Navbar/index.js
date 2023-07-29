@@ -3,6 +3,7 @@ import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import {AiOutlineMenu, AiFillCloseCircle} from 'react-icons/ai'
+import {BsPersonCircle} from 'react-icons/bs'
 
 import NavBarLogo from '../../images/Logo.svg'
 
@@ -21,13 +22,14 @@ class Navbar extends Component {
 
   onLogout = () => {
     Cookies.remove('jwt_token')
+    Cookies.remove('tasty_user')
     const {history} = this.props
     history.replace('/login')
   }
 
   render() {
     const {menuOpened} = this.state
-    const {home, cart} = this.props
+    const {home, cart, profile} = this.props
 
     return (
       <>
@@ -45,12 +47,21 @@ class Navbar extends Component {
           <ul className="nav-links">
             <li key="home" className="list-item">
               <Link className="link" to="/">
-                <p className={home ? 'link Highlight' : 'link'}>Home</p>
+                <p className={home ? 'Highlight' : null}>Home</p>
               </Link>
             </li>
             <li key="cart" className="list-item">
               <Link className="link" to="/cart">
-                <p className={cart ? 'link Highlight' : 'link'}>Cart</p>
+                <p className={cart ? 'Highlight' : null}>Cart</p>
+              </Link>
+            </li>
+            <li className="list-item">
+              <Link className="link" to="/profile">
+                <BsPersonCircle
+                  className={
+                    profile ? 'profile-icon Highlight' : 'profile-icon'
+                  }
+                />
               </Link>
             </li>
             <li key="logout" className="list-item">
@@ -77,12 +88,21 @@ class Navbar extends Component {
             <ul className="nav-links-mobile">
               <li className="list-item">
                 <Link className="link" to="/">
-                  <p>Home</p>
+                  <p className={home ? 'Highlight' : null}>Home</p>
                 </Link>
               </li>
               <li className="list-item">
                 <Link className="link" to="/cart">
-                  <p>Cart</p>
+                  <p className={cart ? 'Highlight' : null}>Cart</p>
+                </Link>
+              </li>
+              <li className="list-item">
+                <Link className="link" to="/profile">
+                  <BsPersonCircle
+                    className={
+                      profile ? 'profile-icon Highlight' : 'profile-icon'
+                    }
+                  />
                 </Link>
               </li>
               <li className="list-item">
